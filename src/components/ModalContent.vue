@@ -1,5 +1,6 @@
 <template>
-    <div class="bg-white p-12 rounded-lg" ref="modalContent">
+   <onClickOutside @trigger='close'>
+        <div class="bg-white p-12 rounded-lg">
         <h2>{{ title }}</h2>
         <p>{{ message }}</p>
         <button
@@ -9,10 +10,11 @@
             Close
         </button>
     </div>
+   </onClickOutside>
 </template>
 
 <script setup>
-import {ref} from 'vue'
+
 import {onClickOutside} from '@vueuse/core'
 const props = defineProps({
     title: String,
@@ -21,11 +23,6 @@ const props = defineProps({
 
 const emit = defineEmits(["close"]);
 
-const modalContent = ref(null)
-
-onClickOutside((modalContent), (event) => {
-    emit('close')
-})
 </script>
 
 <style>
